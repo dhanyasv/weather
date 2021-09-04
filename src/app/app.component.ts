@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './userService';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'weather';
-  weatherapp = 'Dhanya'
+  weatherapp = 'Guest';
+  constructor(private userService:UserService) {
+  }
+  ngOnInit() {
+    this.weatherapp = this.userService.loggedIn ? ` ${this.userService.userName}` : 'Guest'
+  }
 }
